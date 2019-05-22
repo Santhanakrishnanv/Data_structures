@@ -1,0 +1,111 @@
+class node:
+    def __init__(self,x):
+        self.data=x
+        self.adrs=None
+class linked_list:
+    def __init__(self):
+        self.head=None
+        
+    def create_node(self):
+        val=input("Enter data value for node: ")
+        temp=node(val)
+        if self.head is None:
+            self.head=temp
+            return
+        last=self.head
+        while(last.adrs):
+            last=last.adrs
+        last.adrs=temp
+
+    def display(self):
+        tempy=self.head
+        while tempy!=None:
+            print(tempy.data,end=' ')
+            tempy=tempy.adrs
+            
+    def insertatbeg(self):
+        val=input("Enter node data value:")
+        temp=node(val)
+        temp.adrs=self.head
+        self.head=temp
+
+    def deleteatbeg(self):
+        temp=self.head
+        if(temp!=None):
+            self.head=self.head.adrs
+            temp.adrs=None
+        else:
+            print("error Message")
+            
+    def deleteatend(self):
+        a=self.head
+        if(a!=None):
+            if(a.adrs==None):
+                self.head=None
+            else:
+                while(a.adrs!=None):
+                    prev=a
+                    a=a.adrs
+                prev.adrs=None
+        else:
+            print("Error Message")
+    def insertmiddle(self):
+        val=input("Enter data value for node: ")
+        search=input("enter the name of the node after which new node should be inserted: ")
+        temp=node(val)
+        dummy=self.head
+        while(dummy!=0):
+            if(dummy.data==search):
+                return
+            dummy=dummy.adrs
+        temp.adrs=dummy.addrs
+        dummy.addrs=None
+        dummy.adrs=temp
+
+
+    def deletemiddle(self):
+        val=input("Enter data value for node to be deleted: ")
+        dummy=self.head
+        while(dummy!=0):
+            if(dummy.data==val
+
+               ):
+                return
+            prev=dummy
+            dummy=dummy.adrs
+        prev.adrs=dummy.addrs
+        dummy.addrs=None
+
+        
+
+ob=linked_list()
+#ob.head=node("MON")
+#print(ob.head)
+print("Creating a list of nodes..")
+j=int(input("enter number of nodes to create : "))
+for i in range(j):
+    ob.create_node()
+ob.display()
+
+ch=0
+while ch!=7:
+    print("\n1.Insert At Beginning\n2.Delete at Beginning\n3.Insertion at the end\n4.Deletion at the end\n5.Insertion at the middle\n6.Deletion at the middle")
+    ch=int(input("enter your choice :"))
+    if(ch==1):
+        ob.insertatbeg()
+        ob.display()
+    elif(ch==2):
+        ob.deleteatbeg()
+        ob.display()
+    elif(ch==3):
+        ob.create_node()
+        ob.display()
+    elif(ch==4):
+        ob.deleteatend()
+        ob.display()
+    elif(ch==5):
+        ob.insertmiddle()
+        ob.display()
+    elif(ch==6):
+        ob.deletemiddle()
+        ob.display()
